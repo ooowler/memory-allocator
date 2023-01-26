@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "util.h"
+#include "../include/util.h"
 
 _Noreturn void err( const char* msg, ... ) {
   va_list args;

@@ -3,19 +3,28 @@ BUILDDIR=build
 SRCDIR=src
 CC=gcc
 
-all: $(BUILDDIR)/mem.o $(BUILDDIR)/util.o $(BUILDDIR)/mem_debug.o
+SOLUTIONDIR = src/solution
+TESTSDIR = src/tests
+
+all: $(BUILDDIR)/mem.o $(BUILDDIR)/util.o $(BUILDDIR)/mem_debug.o $(BUILDDIR)/main.o $(BUILDDIR)/test.o
 	$(CC) -o $(BUILDDIR)/main $^
 
 build:
 	mkdir -p $(BUILDDIR)
 
-$(BUILDDIR)/mem.o: $(SRCDIR)/mem.c build
+$(BUILDDIR)/mem.o: $(SOLUTIONDIR)/mem.c build
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(BUILDDIR)/mem_debug.o: $(SRCDIR)/mem_debug.c build
+$(BUILDDIR)/mem_debug.o: $(SOLUTIONDIR)/mem_debug.c build
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(BUILDDIR)/util.o: $(SRCDIR)/util.c build
+$(BUILDDIR)/util.o: $(SOLUTIONDIR)/util.c build
+	$(CC) -c $(CFLAGS) $< -o $@
+
+$(BUILDDIR)/main.o: $(SOLUTIONDIR)/main.c build
+	$(CC) -c $(CFLAGS) $< -o $@
+
+$(BUILDDIR)/test.o: $(TESTSDIR)/test.c build
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:

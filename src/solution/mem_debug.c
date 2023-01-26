@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
-#include "mem_internals.h"
-#include "mem.h"
+#include "../include/mem_internals.h"
+#include "../include/mem.h"
 
 void debug_struct_info( FILE* f,
                                  void const* addr ) {
@@ -26,19 +26,19 @@ void debug_heap( FILE* f,  void const* ptr ) {
     debug_struct_info( f, header );
 }
 
-void debug_block(struct block_header* b, const char* fmt, ... ) {
-  #ifdef DEBUG
-
-  va_list args;
-  va_start (args, fmt);
-  vfprintf(stderr, fmt, args);
-  memalloc_debug_struct_info( stderr, b );
-  va_end (args);
-
-  #else
-  (void) b; (void) fmt;
-  #endif
-}
+//void debug_block(struct block_header* b, const char* fmt, ... ) {
+//  #ifdef DEBUG
+//
+//  va_list args;
+//  va_start (args, fmt);
+//  vfprintf(stderr, fmt, args);
+//  memalloc_debug_struct_info( stderr, b );
+//  va_end (args);
+//
+//  #else
+//  (void) b; (void) fmt;
+//  #endif
+//}
 
 void debug(const char* fmt, ... ) {
 #ifdef DEBUG
